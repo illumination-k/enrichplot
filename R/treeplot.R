@@ -134,7 +134,8 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
                                       hclust_method = "ward.D", group_color = NULL, 
                                       extend = 0.3, hilight = TRUE, 
                                       geneClusterPanel = "heatMap", 
-                                      hexpand = .1, align = "both", ...) {
+                                      hexpand = .1, align = "both", 
+                                      xangle = 0, ...) {
     geneClusterPanel <- match.arg(geneClusterPanel, c("heatMap", "dotplot", "pie"))                                  
     has_pairsim(x)
     group <- Description <- Cluster <- Count <- NULL
@@ -199,7 +200,7 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
         
         p <- p + ggnewscale::new_scale_fill() # +
             # coord_equal(xlim = xlim)
-        p <- ggtree::gheatmap(p, ID_Cluster_mat) + 
+        p <- ggtree::gheatmap(p, ID_Cluster_mat, colnames_angle = xangle) + 
             scale_fill_continuous(low="red", high="blue", 
                                   guide = guide_colorbar(reverse=TRUE),
                                   trans = "log10",
@@ -217,7 +218,7 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
                        mapping = aes_string(x = "Cluster", y = "Description", 
                                      size = "Count", color = color),
                        pwidth = 0.5,
-                       axis.params = list(axis = "x", text.size = 3, line.alpha = 0)) +
+                       axis.params = list(axis = "x", text.size = 3, text.angle = xangle, line.alpha = 0)) +
             scale_colour_continuous(low="red", high="blue", 
                                   guide=guide_colorbar(reverse=TRUE),
                                   trans = "log10",
