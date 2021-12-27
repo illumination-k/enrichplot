@@ -200,7 +200,9 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
         
         p <- p + ggnewscale::new_scale_fill() # +
             # coord_equal(xlim = xlim)
-        p <- ggtree::gheatmap(p, ID_Cluster_mat, width=0.5, font.size=3, colnames_angle=-45, hjust=0) + 
+        p <- ggtree::gheatmap(p, ID_Cluster_mat, width=0.5, font.size=3, colnames_angle=-45, hjust=0) +
+            scale_x_ggtree() +
+            scale_y_ggtree() +
             scale_fill_continuous(low="red", high="blue", 
                                   guide = guide_colorbar(reverse=TRUE),
                                   trans = "log10",
