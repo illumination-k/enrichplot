@@ -172,7 +172,7 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
     # } else {
     #     xlim <- c(0, xlim * 4.5 * p_data$x[1])
     # }
-    
+
     if (geneClusterPanel == "pie") {
         ID_Cluster_mat$radius <- sqrt(p_data$count / sum(p_data$count) * cex_category)
         ID_Cluster_mat$x <- p_data$x
@@ -200,7 +200,7 @@ treeplot.compareClusterResult <-  function(x, showCategory = 5,
         
         p <- p + ggnewscale::new_scale_fill() # +
             # coord_equal(xlim = xlim)
-        p <- ggtree::gheatmap(p, ID_Cluster_mat, colnames_angle = xangle) + 
+        p <- ggtree::gheatmap(p, ID_Cluster_mat, width=0.5, font.size=3, colnames_angle=-45, hjust=0) + 
             scale_fill_continuous(low="red", high="blue", 
                                   guide = guide_colorbar(reverse=TRUE),
                                   trans = "log10",
